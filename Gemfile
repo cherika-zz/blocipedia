@@ -54,4 +54,5 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'figaro'
 gem 'pundit'
+gem 'faker'
 
