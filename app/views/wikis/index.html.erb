@@ -15,5 +15,7 @@
 
 
 <div class="col-md-4">
-  <%= link_to "New", new_wiki_path, class: 'btn btn-success' %>
+  <% if policy(Wiki.new).create? %>
+    <%= link_to "New", new_wiki_path, class: 'btn btn-success' %>
+  <% end %>
 </div>
