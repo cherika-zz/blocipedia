@@ -44,6 +44,18 @@
       </div>
     <% end %>
 
+    <% if current_user.standard? %>
+      <h3>Updgrade my account</h3>
+      <div class="form-group">
+          <p><%= button_to "Updgrade my account", new_charge_path, method: :get, class: 'btn btn-danger' %></p>
+      </div> 
+    <% else %>
+      <h3>Downgrade my account</h3>
+      <div class="form-group">
+          <p><%= button_to "Downgrade my account", downgrade_user_path(current_user), data: { confirm: "Are you sure?" }, method: :patch, class: 'btn btn-danger' %></p>
+      </div>
+    <% end %>
+
     <h3>Cancel my account</h3>
     <div class="form-group">
         <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %></p>

@@ -10,13 +10,12 @@
   <body>
 
     <div class='container'>
-      <ul>
       <ul class='nav nav-tabs'>
       <!-- tabs -->
         <li><%= link_to "Blocipedia", root_path %></li>
         <li><%= link_to "Wikis", wikis_path %></li>
 
-      <div class="pull-right user-info">
+        <div class="pull-right user-info">
           <% if current_user %>
           Hello <%= link_to (current_user.name || current_user.email), edit_user_registration_path %>!
           <%= link_to edit_user_registration_path, class: 'btn btn-primary btn-sm' do %>
@@ -30,7 +29,6 @@
             <%= link_to "Sign up", new_user_registration_path %>
           <% end %>
         </div>
-
 
       </ul>
 

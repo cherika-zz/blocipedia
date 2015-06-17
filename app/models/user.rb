@@ -18,9 +18,10 @@ class User < ActiveRecord::Base
     role == 'premium'
   end
 
-  after_initialize :set_default_role, :if => :new_record?
+  # after we call .new
+  # after_initialize :set_default_role, if: :new_record?
 
-  def set_default_role
-    self.role ||= :standard
-  end
+  # def set_default_role
+  #   self.role ||= :standard
+  # end
 end
