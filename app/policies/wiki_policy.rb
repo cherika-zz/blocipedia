@@ -4,7 +4,7 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def show?
-    !record.private? || user.present? 
+    !record.private? || (user.admin? || user.premium?) 
   end
 
   class Scope < Scope
