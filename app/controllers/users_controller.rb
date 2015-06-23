@@ -18,6 +18,10 @@ class UsersController < ApplicationController
 
   def downgrade
     @user = User.find(params[:id])
+    @user.wikis.each do |wiki|
+      wiki.update_attribute(:private, false)
+    end
+    # @user.wikis.update_all(:private, false)
     @user.update_attribute(:role, 'standard')
     redirect_to edit_user_registration_path
   end
