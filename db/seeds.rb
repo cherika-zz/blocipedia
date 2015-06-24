@@ -41,11 +41,21 @@ end
 users = User.all
 
 
-20.times do 
+20.times do |n|
   wiki = Wiki.create!(
-    user: users.sample,
-    title:  Faker::Lorem.sentence,
+    user: User.where(role: 'standard').sample,
+    title:  "Public: #{Faker::Lorem.sentence}",
     body:   Faker::Lorem.paragraph
+  )
+end
+
+us = [admin_user, premium_user]
+20.times do |n|
+  wiki = Wiki.create!(
+    user: us.sample,
+    title:  "Private: #{Faker::Lorem.sentence}",
+    body:   Faker::Lorem.paragraph, 
+    private: true
   )
 end
 
