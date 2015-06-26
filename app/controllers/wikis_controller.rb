@@ -32,10 +32,14 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
+    @collaborators = @wiki.contributors
+    # @collaborator = @wiki.contributors.find([:id])
     authorize @wiki
   end
 
   def update
+    # raise
     @wiki = Wiki.find(params[:id])
     authorize @wiki
     if @wiki.update_attributes(params.require(:wiki).permit(:title, :body, :private))
