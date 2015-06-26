@@ -1,58 +1,58 @@
 <h1>Edit Wiki</h1>
- 
- <div class="row">
-   <div class="col-md-8">
+
+  <div class="row">
+    <div class="col-md-8">
     <!-- default http verb for form_for is post -->
-     <%= form_for @wiki do |f| %>
-       <div class="form-group">
-         <%= f.label :title %>
-         <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
-       </div>
-       <div class="form-group">
-         <%= f.label :body %>
-         <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
-       </div>
-
-      <% if current_user.role == 'admin' || current_user.role == 'premium' %>
+      <%= form_for @wiki do |f| %>
         <div class="form-group">
-          <%= form_for @wiki do |f| %>
-            <%= f.label :private, class: 'checkbox' do %>
-            <%= f.check_box :private %> Make Private
-          <% end %>
+          <%= f.label :title %>
+          <%= f.text_field :title, class: 'form-control', placeholder: "Enter wiki title" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :body %>
+          <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
+        </div>
+
+        <% if current_user.role == 'admin' || current_user.role == 'premium' %>
+          <div class="form-group">
+            <%= form_for @wiki do |f| %>
+              <%= f.label :private, class: 'checkbox' do %>
+                <%= f.check_box :private %> Make Private
+              <% end %>
+            <% end %>
         <% end %>
+
+
+        <div class="form-group">
+          <%= f.submit "Save", class: 'btn btn-success' %>
+        </div>
       <% end %>
-
-
-       <div class="form-group">
-         <%= f.submit "Save", class: 'btn btn-success' %>
-       </div>
-     <% end %>
     </div>
 
-      <h1>Add Collaborators</h1>
+    <h1>Add Collaborators</h1>
       <%= form_tag collaborators_path do %>
         <%= select_tag :user_id, options_from_collection_for_select(@users, :id, :name), class: "selectpicker" %>
         <%= hidden_field_tag :wiki_id, @wiki.id %>
         <%= submit_tag "Add Collaborator" %>
       <% end %>
 
-    <%# @collaborators.each do |collaborator| %>
-      <%#= link_to "Remove Collaborator", collaborator_path(@wiki, @collaborators), method: :delete, class: 'btn btn-danger' %>
-    <%# end %>
+<%# @collaborators.each do |collaborator| %>
+<%#= link_to "Remove Collaborator", collaborator_path(@wiki, @collaborators), method: :delete, class: 'btn btn-danger' %>
+<%# end %>
 
-      <h1>Remove Collaborators</h1>
+    <h1>Remove Collaborators</h1>
       <%= form_tag(collaborator_path, method: 'delete') do %>
         <%= select_tag :user_id, options_from_collection_for_select(@collaborators, :id, :name), class: "selectpicker" %>
-        <!-- pass attributes, shows in html but doesn't render on the page for the user -->
-        <%#= hidden_field_tag :wiki_id, @wiki.id %>
+    <!-- pass attributes, shows in html but doesn't render on the page for the user -->
+    <%#= hidden_field_tag :wiki_id, @wiki.id %>
         <%= submit_tag "Remove Collaborator", class: "btn btn-danger" %>
       <% end %>
 
     <h2>Current Collaborators</h2>
-    <% @collaborators.each do |collaborator| %>
-      <p><%= collaborator.name %></p>
-    <% end %>
- </div>
+      <% @collaborators.each do |collaborator| %>
+        <p><%= collaborator.name %></p>
+      <% end %>
+  </div>
 
 
 
