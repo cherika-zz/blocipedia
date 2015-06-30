@@ -12,7 +12,7 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
-    @wiki = Wiki.find(params[:id])
+    @wiki = Wiki.friendly.find(params[:id])
     @user = User.find(params[:user_id])
     @collaborator = Collaborator.where(user: @user, wiki: @wiki).take
     if @collaborator.destroy
