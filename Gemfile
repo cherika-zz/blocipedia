@@ -60,4 +60,7 @@ gem 'redcarpet'
 
 gem 'friendly_id', '~> 5.1.0'
 gem 'epic-editor-rails'
+gem 'jquery-turbolinks'
+
+
 
